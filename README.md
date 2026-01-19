@@ -38,7 +38,7 @@ Tech Stack
 How to Run Locally
 
 1. Clone the repo
-git clone https://github.com/yourusername/messmate.git
+git clone https://github.com/Aditya-coder1235/MessMate.git
 cd messmate
 
 
