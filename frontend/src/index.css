@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+* {
+    font-family: "Times New Roman", Times, serif;
+}
+
+.b {
+    padding: 10px;
+    border-radius: 14px;
+}
+
+button {
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 480px) {
+    .a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .a button {
+        margin: 0px;
+        padding: 0px;
+    }
+}
