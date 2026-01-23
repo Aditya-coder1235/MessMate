@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 require('dotenv').config()
-const port = process.env.PORT;
+const port = process.env.PORT || 8080;
 const cors = require('cors')
 const cookieParser=require('cookie-parser')
 
@@ -24,7 +24,8 @@ main().then(() => console.log("Connect to Db"))
 //middlewares
 app.use(
     cors({
-        origin: "http://localhost:5173",
+        origin:[ "http://localhost:5173",
+        "https://your-frontend-name.netlify.app"],
         credentials: true,              
     })
 );
