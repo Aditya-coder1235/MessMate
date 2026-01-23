@@ -25,7 +25,7 @@ main().then(() => console.log("Connect to Db"))
 app.use(
     cors({
         origin:[ "http://localhost:5173",
-        "https://messmate11.vercel.app"],
+        "https://messmate111.vercel.app/"],
         credentials: true,              
     })
 );
