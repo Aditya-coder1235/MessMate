@@ -14,7 +14,7 @@ const ManageMess = () => {
     async function fetchOwnerMess() {
         try {
             const res = await axios.get(
-                `http://localhost:8080/api/mess/getOwnerMess/${ownerId}`,
+                `https://messmate-backend-r94e.onrender.com/api/mess/getOwnerMess/${ownerId}`,
                 { withCredentials: true },
             );
             setOwnerMess(res.data.Mess);
@@ -34,7 +34,7 @@ const ManageMess = () => {
     async function delteMess(id) {
         try {
             const res = await axios.delete(
-                `http://localhost:8080/api/mess/delete/${id}`,
+                `https://messmate-backend-r94e.onrender.com/api/mess/delete/${id}`,
                 { withCredentials: true },
             );
             alert("Mess Deleted Successfully")
@@ -47,7 +47,7 @@ const ManageMess = () => {
     async function deleteMenu(id) {
         try {
             const res = await axios.delete(
-                `http://localhost:8080/api/menu/delete/${id}`,
+                `https://messmate-backend-r94e.onrender.com/api/menu/delete/${id}`,
                 { withCredentials: true },
             );
             alert("Menu Deleted Successfully");

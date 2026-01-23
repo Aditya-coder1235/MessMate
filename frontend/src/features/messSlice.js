@@ -4,7 +4,7 @@ import axios from 'axios'
 export const fetchAllMess = createAsyncThunk('/fetch/mess', async () => {
     try {
         const res = await axios.get(
-            "http://localhost:8080/api/mess/getAll",
+            "https://messmate-backend-r94e.onrender.com/api/mess/getAll",
             { withCredentials: true },
         );
         return res.data.AllMess

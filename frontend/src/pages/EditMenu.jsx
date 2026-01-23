@@ -19,7 +19,11 @@ const EditMenu = () => {
 
     const updateMenu = async () => {
         try {
-            let res = await axios.put(`http://localhost:8080/api/menu/update/${id}`,formData,{withCredentials:true});
+            let res = await axios.put(
+                `https://messmate-backend-r94e.onrender.com/api/menu/update/:id/${id}`,
+                formData,
+                { withCredentials: true },
+            );
             console.log(res.data)
             alert('Menu Update Successfully')
             navigate("/manageMess");

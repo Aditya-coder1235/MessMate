@@ -19,7 +19,11 @@ const AddMenu = () => {
 
     const uploadMenu = async () => {
         try {
-            let res = await axios.post("http://localhost:8080/api/menu/create",formData,{withCredentials:true});
+            let res = await axios.post(
+                "https://messmate-backend-r94e.onrender.com/api/menu/create",
+                formData,
+                { withCredentials: true },
+            );
             // console.log(res.data)
             alert('Menu Added Successfully')
             navigate("/manageMess");

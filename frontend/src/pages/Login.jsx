@@ -13,7 +13,11 @@ const Login = () => {
     
         const loginUser = async () => {
             try {
-                let res = await axios.post("http://localhost:8080/api/auth/login",formData,{withCredentials:true});
+                let res = await axios.post(
+                    "https://messmate-backend-r94e.onrender.com/api/auth/login",
+                    formData,
+                    { withCredentials: true },
+                );
                 localStorage.setItem("token", res.data.token);
                 localStorage.setItem("userId", res.data.user._id);
                 localStorage.setItem("role",res.data.user.role);

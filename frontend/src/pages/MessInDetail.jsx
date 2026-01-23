@@ -21,7 +21,7 @@ const MessInDetail = () => {
     const fetchAllreviews=async()=>{
         try {
             const res = await axios.get(
-                `http://localhost:8080/api/review/getReview/${id}`,
+                `https://messmate-backend-r94e.onrender.com/api/review/getReview/${id}`,
                 { withCredentials: true },
             );
             setReviews(res.data.reviews);
@@ -35,7 +35,7 @@ const MessInDetail = () => {
     const deleteReview = async (id) => {
         try {
             const res = await axios.delete(
-                `http://localhost:8080/api/review/delete/${id}`,
+                `https://messmate-backend-r94e.onrender.com/api/review/delete/${id}`,
                 { withCredentials: true },
             );
             // setReviews(res.data.reviews);
@@ -51,7 +51,7 @@ const MessInDetail = () => {
     const fetchById = async () => {
         try {
             const res = await axios.get(
-                `http://localhost:8080/api/mess/getById/${id}`,
+                ` https://messmate-backend-r94e.onrender.com/api/mess/getById/${id}`,
                 { withCredentials: true },
             );
             setMess(res.data.Mess);
@@ -72,7 +72,7 @@ const MessInDetail = () => {
     const createReviews=async()=>{
         try {
             const res = await axios.post(
-                `http://localhost:8080/api/review/create`,
+                `https://messmate-backend-r94e.onrender.com/api/review/create`,
                 formData,
                 { withCredentials: true },
             );

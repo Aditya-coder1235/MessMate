@@ -18,7 +18,7 @@ const UserSignup = () => {
 
     const createUser = async () => {
         try {
-            let res = await axios.post("http://localhost:8080/api/auth/signup",formData);
+            let res = await axios.post("https://messmate-backend-r94e.onrender.com/api/auth/signup",formData);
             // console.log(res.data);
             navigate('/login')
         } catch (error) {

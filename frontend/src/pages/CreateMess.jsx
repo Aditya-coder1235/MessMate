@@ -39,7 +39,7 @@ const CreateMess = () => {
         try {
             
             let res = await axios.post(
-                "http://localhost:8080/api/mess/create",
+                "https://messmate-backend-r94e.onrender.com/api/mess/create",
                 formData,
                 { withCredentials: true },
             );

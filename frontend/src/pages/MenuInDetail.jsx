@@ -12,7 +12,7 @@ const MenuInDetail = () => {
     const fetchMenu = async () => {
         try {
             const res = await axios.get(
-                `http://localhost:8080/api/menu/getMenuForTheirMess/${id}`,
+                `https://messmate-backend-r94e.onrender.com/api/menu/getMenuForTheirMess/${id}`,
                 { withCredentials: true },
             );
             setMenu(res.data.menu);

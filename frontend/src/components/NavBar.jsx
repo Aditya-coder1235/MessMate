@@ -9,7 +9,7 @@ const NavBar = () => {
     const logoutUser = async () => {
         try {
             let res = await axios.post(
-                "http://localhost:8080/api/auth/logout",
+                "https://messmate-backend-r94e.onrender.com/api/auth/login",
                 {},
                 { withCredentials: true },
             );

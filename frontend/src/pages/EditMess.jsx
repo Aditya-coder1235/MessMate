@@ -22,7 +22,7 @@ const EditMess = () => {
         try {
             setLoading(true);
             let res = await axios.put(
-                `http://localhost:8080/api/mess/update/${id}`,
+                `https://messmate-backend-r94e.onrender.com/api/mess/update/${id}`,
                 formData,
                 { withCredentials: true },
             );
