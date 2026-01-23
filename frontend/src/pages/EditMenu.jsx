@@ -20,7 +20,7 @@ const EditMenu = () => {
     const updateMenu = async () => {
         try {
             let res = await axios.put(
-                `https://messmate-backend-r94e.onrender.com/api/menu/update/:id/${id}`,
+                `https://messmate-backend-r94e.onrender.com/api/menu/update/${id}`,
                 formData,
                 { withCredentials: true },
             );
