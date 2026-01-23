@@ -24,13 +24,15 @@ main().then(() => console.log("Connect to Db"))
 //middlewares
 app.use(
     cors({
-        origin:[ "http://localhost:5173",
-        "https://messmate111.vercel.app/"],
-        credentials: true,              
+        origin: [
+            "http://localhost:5173",
+            "https://messmate111.vercel.app"
+        ],
+        credentials: true,
     })
 );
-app.use(express.json())
 app.use(cookieParser())
+app.use(express.json())
 
 app.get('/', (req, res) => {
     res.send('Hi, i am Root');
