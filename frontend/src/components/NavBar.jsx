@@ -26,102 +26,73 @@ const NavBar = () => {
     // console.log(role)
    
     return (
-        <nav className="fixed top-0 z-50 w-full bg-emerald-600 shadow-md backdrop-blur-md">
-            <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-10">
-                <Link to="/home" className="flex items-center gap-2">
+        <nav
+            className="w-full md:gap-70   md:px-10 shadow-md h-19 flex justify-around items-center  
+                         backdrop-blur-md"
+            style={{ backgroundColor: "#DBDFD0" }}
+        >
+            <Link to="/home">
+                <div className="flex items-center gap- md:gap-2">
                     <img
                         src="/messMateLogo.png"
-                        alt="MessMate"
-                        className="h-10 w-auto"
+                        alt=""
+                        className="h-7 md:h-15"
                     />
-                    <h2 className="text-lg font-bold text-white tracking-wide sm:text-xl">
+                    <h2
+                        className="text-[12px] md:text-2xl font-mono text- tracking-wide"
+                        //  style={{ color: "#AD343E" }}
+                    >
                         MessMate
                     </h2>
-                </Link>
-
-                <div className="hidden md:flex items-center gap-8">
-                    <Link to="/home" className="nav-link">
-                        Home
-                    </Link>
-
-                    {/* {role === "user" && (
-                        <Link to="/userDash" className="nav-link">
-                            User Info
-                        </Link>
-                    )} */}
-
-                    {role === "owner" && (
-                        <>
-                            <Link to="/createMess" className="nav-link">
-                                Upload Mess
-                            </Link>
-                            <Link to="/manageMess" className="nav-link">
-                                Manage Mess
-                            </Link>
-                        </>
-                    )}
-
-                    {!token ? (
-                        <>
-                            <Link to="/login" className="nav-link">
-                                Login
-                            </Link>
-                            <Link to="/signup" className="nav-link">
-                                Signup
-                            </Link>
-                        </>
-                    ) : (
-                        <button onClick={logoutUser} className="nav-link">
-                            Logout
-                        </button>
-                    )}
                 </div>
+            </Link>
 
-                {/* <button
-                    onClick={() => setOpen(!open)}
-                    className="md:hidden text-white focus:outline-none"
+            <div className="flex gap-3 md:gap-11 font-semibold md:text-[15px] text-[8px]">
+                <Link
+                    to="/home"
+                    className="text-gray-700 hover:text-red-700 font-medium"
                 >
-                    ☰
-                </button> */}
+                    Home
+                </Link>
+                <Link
+                    to="/about"
+                    className="text-gray-700 hover:text-red-700 font-medium"
+                >
+                    About Us
+                </Link>
+                <Link
+                    to="/contact"
+                    className="text-gray-700 hover:text-red-700 font-medium"
+                >
+                    Contact Us
+                </Link>
+                <Link
+                    to="/services"
+                    className="text-gray-700 hover:text-red-700 font-medium"
+                >
+                    Services
+                </Link>
             </div>
-
-          
-                <div className="md:hidden a bg-emerald-700 px-4 py-4 space-y-4">
-                    <Link to="/home" className="mobile-link">
-                        Home
+            <div className="flex items-center md:gap-10 md:text-[15px] text-[8px]">
+                {!token ? (
+                    <>
+                        <Link to="/login" className="nav-link">
+                            Login
+                        </Link>
+                        <Link to="/signup" className="nav-link">
+                            Signup
+                        </Link>
+                    </>
+                ) : (
+                    <Link
+                        onClick={logoutUser}
+                        className="nav-link px-5 py-1 text-white rounded"
+                        style={{ backgroundColor: "#AD343E" }}
+                    >
+                        Logout
                     </Link>
-
-
-                    {role === "owner" && (
-                        <>
-                            <Link to="/createMess" className="mobile-link">
-                                Upload Mess
-                            </Link>
-                            <Link to="/manageMess" className="mobile-link">
-                                Manage Mess
-                            </Link>
-                        </>
-                    )}
-
-                    {!token ? (
-                        <>
-                            <Link to="/login" className="mobile-link">
-                                Login
-                            </Link>
-                            <Link to="/signup" className="mobile-link">
-                                Signup
-                            </Link>
-                        </>
-                    ) : (
-                        <button
-                            onClick={logoutUser}
-                            className="mobile-link text-left"
-                        >
-                            Logout
-                        </button>
-                    )}
-                </div>
-            
+                )}
+            </div>
         </nav>
     );
 };

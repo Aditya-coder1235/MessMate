@@ -57,7 +57,7 @@ const Login = () => {
                             type="email"
                             placeholder="Enter your email"
                             className="w-full mt-1 px-4 py-2 border rounded-md
-                         focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                         focus:outline-none focus:ring-2 focus:ring-red-500"
                             value={formData.email}
                             onChange={handleOnChange}
                             name="email"
@@ -72,20 +72,21 @@ const Login = () => {
                             type="password"
                             placeholder="Enter your password"
                             className="w-full mt-1 px-4 py-2 border rounded-md
-                         focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                         focus:outline-none focus:ring-2 focus:ring-red-500"
                             value={formData.password}
                             onChange={handleOnChange}
                             name="password"
                         />
                     </div>
-                    {
-                        error && <p className="text-red-500">{error}</p>
-                    }
+                    {error && <p className="text-red-500">{error}</p>}
 
                     <button
                         type="submit"
-                        className="w-full bg-emerald-600 text-white py-2 rounded-md font-semibold
-                       hover:bg-emerald-700 transition"
+                        className="w-full text-white py-2 rounded-md font-semibold
+                        transition"
+                        style={{
+                            backgroundColor: "#AD343E",
+                        }}
                     >
                         Login
                     </button>
@@ -95,7 +96,10 @@ const Login = () => {
                     Don’t have an account?
                     <Link
                         to={"/signup"}
-                        className="text-emerald-600 font-medium ml-1 hover:underline"
+                        className="text--600 font-medium ml-1 hover:underline"
+                        style={{
+                            color: "#AD343E",
+                        }}
                     >
                         Sign up
                     </Link>

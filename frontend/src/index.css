@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+body{
+    overflow-x: hidden;
+}
+
 * {
     font-family: "Times New Roman", Times, serif;
 }

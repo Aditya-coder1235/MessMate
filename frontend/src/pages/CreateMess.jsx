@@ -62,9 +62,9 @@ const CreateMess = () => {
         createMess();
     };
     return (
-        <div className="min-h-screen bg-gray-100 pt-24">
+        <div className="min-h-screen bg-gray-100 ">
             <NavBar />
-            <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4 py-10">
+            <div className="min-h-screen bg-gray-100 flex md:items-center justify-center px-4 py-10">
                 <div className="bg-white w-full max-w-2xl rounded-xl shadow-lg p-8">
                     <h2 className="text-2xl font-bold text-gray-800 mb-1">
                         Add Your Mess
@@ -84,7 +84,7 @@ const CreateMess = () => {
                                 placeholder="e.g. Shiv Mess"
                                 value={messName}
                                 onChange={(e) => setMessName(e.target.value)}
-                                className="w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-emerald-500 outline-none"
+                                className="w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-red-700 outline-none"
                                 required
                             />
                         </div>
@@ -100,26 +100,28 @@ const CreateMess = () => {
                                     placeholder="2500"
                                     value={price}
                                     onChange={(e) => setPrice(e.target.value)}
-                                    className="w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-emerald-500 outline-none"
+                                    className="w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-red-700 outline-none"
                                     required
                                 />
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label className="text-sm text-gray-600">
-                                   Upload Mess Image
-                                </label>
-                                <input
-                                    type="file"
-                                    name="image"
-                                    // placeholder="2500"
-                                    onChange={(e) => setImage(e.target.files[0])}
-                                    className="w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-emerald-500 outline-none"
-                                    accept="image/*"
-                                    required
-                                />
-                            </div>
+                                <div>
+                                    <label className="text-sm text-gray-600">
+                                        Upload Mess Image
+                                    </label>
+                                    <input
+                                        type="file"
+                                        name="image"
+                                        // placeholder="2500"
+                                        onChange={(e) =>
+                                            setImage(e.target.files[0])
+                                        }
+                                        className="w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-red-700 outline-none"
+                                        accept="image/*"
+                                        required
+                                    />
+                                </div>
                             </div>
 
                             <div>
@@ -132,7 +134,7 @@ const CreateMess = () => {
                                     onChange={(e) =>
                                         setVegNonveg(e.target.value)
                                     }
-                                    className="w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-emerald-500 outline-none"
+                                    className="w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-red-700 outline-none"
                                 >
                                     <option value="veg">Veg</option>
                                     <option value="nonveg">Non-Veg</option>
@@ -151,7 +153,7 @@ const CreateMess = () => {
                                 placeholder="Street, Area"
                                 value={address}
                                 onChange={(e) => setAddress(e.target.value)}
-                                className="w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-emerald-500 outline-none"
+                                className="w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-red-700 outline-none"
                                 required
                             />
                         </div>
@@ -166,7 +168,7 @@ const CreateMess = () => {
                                 placeholder="Pune"
                                 value={city}
                                 onChange={(e) => setCity(e.target.value)}
-                                className="w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-emerald-500 outline-none"
+                                className="w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-red-700 outline-none"
                                 required
                             />
                         </div>
@@ -180,16 +182,18 @@ const CreateMess = () => {
                                 rows="3"
                                 placeholder="Home-style food, hygienic kitchen..."
                                 value={description}
-                                onChange={(e)=>setDescription(e.target.value)}
-                                className="w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-emerald-500 outline-none resize-none"
+                                onChange={(e) => setDescription(e.target.value)}
+                                className="w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-red-700 outline-none resize-none"
                             ></textarea>
                         </div>
-                        {
-                            error && <p className="text-red-500">{error}</p>
-                        }
+                        {error && <p className="text-red-500">{error}</p>}
 
                         <button
-                            className="w-full bg-emerald-600 text-white py-3 rounded-md font-semibold hover:bg-emerald-700 transition"
+                            className="w-full bg--600 text-white py-3 rounded-md font-semibold hover:bg--700 transition"
+                            style={{
+                                backgroundColor: "#AD343E",
+                                color: "white",
+                            }}
                         >
                             Publish Mess
                         </button>

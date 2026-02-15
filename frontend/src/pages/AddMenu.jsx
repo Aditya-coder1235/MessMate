@@ -46,13 +46,13 @@ const AddMenu = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-100 pt-20 ">
+        <div className="min-h-screen bg-gray-100 ">
             <NavBar />
 
-            <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4 py-10">
+            <div className="min-h-screen bg-gray-100 flex md:items-center justify-center px-4 py-10">
                 <div className="bg-white w-full max-w-2xl rounded-xl shadow-lg p-8">
                     <h2 className="text-2xl font-bold text-gray-800 mb-1">
-                         Add Your Mess Menu
+                        Add Your Mess Menu
                     </h2>
                     <p className="text-gray-500 mb-6">
                         Fill the details to list your Menu for Your Mess
@@ -67,7 +67,7 @@ const AddMenu = () => {
                                 name="day"
                                 value={formData.day}
                                 onChange={handleOnChange}
-                                className="w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-emerald-500 outline-none"
+                                className="w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-red-700 outline-none"
                             >
                                 <option value="Monday">Monday</option>
                                 <option value="Tuesday">Tuesday</option>
@@ -88,7 +88,7 @@ const AddMenu = () => {
                                 value={formData.breakfast}
                                 onChange={handleOnChange}
                                 placeholder="Enter Your Breakfast Menu in Detail..."
-                                className="w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-emerald-500 outline-none resize-none"
+                                className="w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-red-700 outline-none resize-none"
                                 required
                             ></textarea>
                         </div>
@@ -102,7 +102,7 @@ const AddMenu = () => {
                                 value={formData.lunch}
                                 onChange={handleOnChange}
                                 placeholder="Enter Your Lunch Menu in Detail..."
-                                className="w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-emerald-500 outline-none resize-none"
+                                className="w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-red-700 outline-none resize-none"
                                 required
                             ></textarea>
                         </div>
@@ -117,11 +117,17 @@ const AddMenu = () => {
                                 value={formData.dinner}
                                 onChange={handleOnChange}
                                 placeholder="Enter Your Dinner Menu in Detail..."
-                                className="w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-emerald-500 outline-none resize-none"
+                                className="w-full mt-1 px-4 py-2 border rounded-md focus:ring-2 focus:ring-red-700 outline-none resize-none"
                             ></textarea>
                         </div>
 
-                        <button className="w-full bg-emerald-600 text-white py-3 rounded-md font-semibold hover:bg-emerald-700 transition">
+                        <button
+                            className="w-full bg-red-700 text-white py-3 rounded-md font-semibold hover-red-700 transition"
+                            style={{
+                                backgroundColor: "#AD343E",
+                                color: "white",
+                            }}
+                        >
                             Add Menu
                         </button>
                     </form>

@@ -63,7 +63,7 @@ const MessInDetail = () => {
     useEffect(() => {
         fetchById();
         fetchAllreviews()
-    }, []);
+    }, [id]);
 
     if (!mess) {
         return <div className="pt-32 text-center">Loading...</div>;
@@ -100,10 +100,10 @@ const MessInDetail = () => {
     // console.log(mess.images);
 
     return (
-        <div className="min-h-screen bg-gray-100 pt-24 ">
+        <div className="min-h-screen bg-gray-100 ">
             <NavBar />
 
-            <div className="max-w-4xl mx-auto px-4 pb-24">
+            <div className="max-w-4xl mx-auto px-4 pt-5 pb-24">
                 <div className="bg-white rounded-xl shadow-md overflow-hidden">
                     <div className="h-64 bg-gray-200 flex items-center justify-center">
                         <div className="relative h-72 w-full overflow-hidden">
@@ -154,21 +154,26 @@ const MessInDetail = () => {
                                 <p>Email: {mess.owner.email}</p>
                             </div>
                         )}
+                        <div className="flex">
+                            <a href={`tel:${mess.owner.phone}`}>
+                                <button
+                                    className="mt-4 b00 text-white py-3 rounded-md h700 transition w-40"
+                                    style={{ backgroundColor: "#AD343E" }}
+                                >
+                                    Contact Mess Owner
+                                </button>
+                            </a>
 
-                        <a href={`tel:${mess.owner.phone}`}>
-                            <button className="mt-4 bg-emerald-600 text-white py-3 rounded-md hover:bg-emerald-700 transition w-40">
-                                Contact Mess Owner
+                            <button
+                                className="mt-4 ms-4 bg-e00 text-white py-3 rounded-md hold-700 transition w-40"
+                                style={{ backgroundColor: "#AD343E" }}
+                                onClick={() =>
+                                    navigate(`/menuInDetail/${mess._id}`)
+                                }
+                            >
+                                View Today Menu
                             </button>
-                        </a>
-
-                        <button
-                            className="mt-4 ms-4 bg-emerald-600 text-white py-3 rounded-md hover:bg-emerald-700 transition w-40"
-                            onClick={() =>
-                                navigate(`/menuInDetail/${mess._id}`)
-                            }
-                        >
-                            View Today Menu
-                        </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -181,7 +186,7 @@ const MessInDetail = () => {
 
                     <form
                         onSubmit={handleOnSubmit}
-                        className="border rounded-lg p-4 space-y-4"
+                        className=" rounded-lg p-4 space-y-4"
                     >
                         <h3 className="font-semibold text-lg text-gray-700">
                             Add Your Review
@@ -197,7 +202,7 @@ const MessInDetail = () => {
                                 name="rating"
                                 onChange={handleOnChange}
                                 required
-                                className="w-full md:w-1/3 border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                                className="w-full md:w-1/3 border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-700"
                             />
 
                             <input
@@ -207,19 +212,20 @@ const MessInDetail = () => {
                                 name="comment"
                                 onChange={handleOnChange}
                                 required
-                                className="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                                className="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-700"
                             />
                         </div>
 
                         <button
                             type="submit"
-                            className="bg-emerald-600 text-white px-6 py-2 rounded-md hover:bg-emerald-700 transition"
+                            className="bg-e600 text-white md:px-6 px-3 py-1 md:py-2 rounded-md hod-700 transition"
+                            style={{ backgroundColor: "#AD343E" }}
                         >
                             Submit Review
                         </button>
                     </form>
 
-                    <div className="space-y-4">
+                    <div className="space-y-4 pt-5">
                         {reviews.length === 0 ? (
                             <p className="text-gray-500 text-center">
                                 No reviews yet. Be the first to review!
@@ -254,7 +260,7 @@ const MessInDetail = () => {
                                     {userId === review.user._id && (
                                         <>
                                             <button
-                                                className="bg-red-600 w-30 text-white py-2 rounded-lg hover:bg-red-700"
+                                                className="bg-red-600 w-20 md:w-30 text-white py-1 md:py-2 rounded-lg hover:bg-red-700"
                                                 onClick={() =>
                                                     deleteReview(
                                                         review.user._id,

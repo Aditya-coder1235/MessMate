@@ -13,6 +13,10 @@ import AddMenu from './pages/AddMenu'
 import MenuInDetail from './pages/MenuInDetail'
 import EditMenu from './pages/EditMenu'
 import ProtectedRoute from './routes/ProtectedRoute'
+import PermissionD from './pages/PermissionD'
+import AboutUs from './pages/AboutUs'
+import ContactUs from './pages/ContactUs'
+import Services from './pages/Services'
 
 const App = () => {
   return (
@@ -21,10 +25,14 @@ const App = () => {
               <Route path="/" element={<LandingPage />}></Route>
               <Route path="/signup" element={<UserSignup />}></Route>
               <Route path="/login" element={<Login />}></Route>
+              <Route path="/not" element={<PermissionD />}></Route>
+              <Route path="/about" element={<AboutUs />}></Route>
+              <Route path="/contact" element={<ContactUs />}></Route>
+              <Route path="/services" element={<Services />}></Route>
 
               <Route element={<ProtectedRoute />}>
                   <Route path="/home" element={<Dashboard />}></Route>
-                 
+
                   <Route path="/createMess" element={<CreateMess />}></Route>
                   <Route path="/mess/:id" element={<MessInDetail />}></Route>
                   <Route path="/manageMess" element={<ManageMess />}></Route>

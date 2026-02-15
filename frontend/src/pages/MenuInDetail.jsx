@@ -26,7 +26,7 @@ const MenuInDetail = () => {
     }, []);
 
     return (
-        <div className="min-h-screen bg-gray-100 pt-24">
+        <div className="min-h-screen bg-gray-100 ">
             <NavBar />
 
             <div className="max-w-4xl mx-auto px-4 py-10">
@@ -43,44 +43,51 @@ const MenuInDetail = () => {
                 {menu.map((item) => (
                     <div
                         key={item._id}
-                        className="bg-white rounded-xl shadow-md p-6 mb-6"
+                        className="bg-white rounded-2xl shadow-lg p-6 mb-6 hover:shadow-xl transition-all duration-300"
                     >
-                        <div className="flex justify-between items-center mb-4">
-                            <h2 className="text-xl font-semibold text-gray-800">
+                        <div className="flex justify-between items-center mb-6">
+                            <h2 className="text-2xl font-semibold text-gray-800">
                                 {item.day}
                             </h2>
-                            <span className="text-sm bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full">
+                            <span className="text-sm bg-emerald-100 text-emerald-700 px-4 py-1 rounded-full">
                                 Active Menu
                             </span>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div className="border rounded-lg p-4 bg-gray-50">
-                                <h3 className="font-semibold text-gray-700 mb-1">
-                                     Breakfast
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                            <div className="border rounded-xl p-5 bg-gray-50 hover:bg-gray-100 transition">
+                                <h3 className="font-semibold text-gray-700 mb-2">
+                                    Breakfast
                                 </h3>
                                 <p className="text-gray-600">
                                     {item.breakfast}
                                 </p>
                             </div>
 
-                            <div className="border rounded-lg p-4 bg-gray-50">
-                                <h3 className="font-semibold text-gray-700 mb-1">
-                                     Lunch
+                            <div className="border rounded-xl p-5 bg-gray-50 hover:bg-gray-100 transition">
+                                <h3 className="font-semibold text-gray-700 mb-2">
+                                    Lunch
                                 </h3>
                                 <p className="text-gray-600">{item.lunch}</p>
                             </div>
 
-                            <div className="border rounded-lg p-4 bg-gray-50">
-                                <h3 className="font-semibold text-gray-700 mb-1">
-                                     Dinner
+                            <div className="border rounded-xl p-5 bg-gray-50 hover:bg-gray-100 transition">
+                                <h3 className="font-semibold text-gray-700 mb-2">
+                                    Dinner
                                 </h3>
                                 <p className="text-gray-600">{item.dinner}</p>
                             </div>
                         </div>
                     </div>
                 ))}
-                <button className="mt-4 ms-4 bg-emerald-600 text-white py-3 rounded-md hover:bg-emerald-700 transition w-40" onClick={()=>navigate(`/mess/${id}`)}>
+                <button
+                    className="mt-4 ms-4 bg--600 text-white py-2 md:py-3 rounded-md hover:bg--700 transition w-30 md:w-40"
+                    onClick={() => navigate(`/mess/${id}`)}
+                    style={{
+                        color: "white",
+                        backgroundColor: "#AD343E",
+                    }}
+                >
                     Go Back
                 </button>
             </div>

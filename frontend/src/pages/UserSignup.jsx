@@ -42,124 +42,131 @@ const UserSignup = () => {
 
     return (
         <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
-            <div className="bg-white w-full max-w-md p-8 rounded-xl shadow-md">
-                <h2 className="text-2xl font-bold text-center text-gray-800 mb-2">
-                    Create Account
-                </h2>
-                <p className="text-center text-gray-500 mb-6">
-                    Join MessMate and find the best mess near you
-                </p>
+            <div className="bg-white max-w-4xl w-full rounded-2xl shadow-lg overflow-hidden grid grid-cols-1 md:grid-cols-2">
+                <div
+                    className="hidden md:flex flex-col justify-center bg-linear-to-br  text-white p-10"
+                    style={{
+                        backgroundColor: "#AD343E",
+                    }}
+                >
+                    <h2 className="text-3xl font-bold mb-4">
+                        Welcome to MessMate
+                    </h2>
+                    <p className="text-emerald-100 mb-6">
+                        Find affordable & healthy mess near you with real photos
+                        and honest reviews.
+                    </p>
 
-                <form className="space-y-4" onSubmit={handleOnSubmit}>
-                    <div>
-                        <label className="text-sm text-gray-600">
-                            Full Name
-                        </label>
+                    <ul className="space-y-3 text-sm">
+                        <li> Verified mess listings</li>
+                        <li> Location based search</li>
+                        <li> Multiple food images</li>
+                        <li> Trusted by food lovers</li>
+                    </ul>
+                </div>
+
+                <div className="p-8">
+                    <h2 className="text-2xl font-bold text-gray-800 text-center">
+                        Create Account
+                    </h2>
+                    <p className="text-gray-500 text-sm text-center mb-6">
+                        Join MessMate in less than a minute
+                    </p>
+
+                    <form onSubmit={handleOnSubmit} className="space-y-3">
                         <input
                             type="text"
                             name="name"
-                            placeholder="Enter your name"
-                            className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                            placeholder="Full Name"
+                            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-red-500 outline-none"
                             value={formData.name}
                             onChange={handleOnChange}
                         />
-                    </div>
 
-                    <div>
-                        <label className="text-sm text-gray-600">Email</label>
                         <input
                             type="email"
                             name="email"
-                            placeholder="Enter your email"
-                            className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                            placeholder="Email Address"
+                            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-red-500 outline-none"
                             value={formData.email}
                             onChange={handleOnChange}
                         />
-                    </div>
 
-                    <div>
-                        <label className="text-sm text-gray-600">
-                            Password
-                        </label>
                         <input
                             type="password"
                             name="password"
-                            placeholder="Create password"
-                            className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                            placeholder="Password"
+                            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-red-500 outline-none"
                             value={formData.password}
                             onChange={handleOnChange}
                         />
-                    </div>
 
-                    <div>
-                        <label className="text-sm text-gray-600">Phone</label>
                         <input
                             type="number"
                             name="phone"
-                            placeholder="Enter your Phone Number"
-                            className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                            placeholder="Phone Number"
+                            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-red-500 outline-none"
                             value={formData.phone}
                             onChange={handleOnChange}
                         />
-                    </div>
 
-                    <div>
-                        <label className="text-sm text-gray-600">Adress</label>
                         <input
                             type="text"
                             name="address"
-                            placeholder="Enter your Phone Number"
-                            className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                            placeholder="Address"
+                            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-red-500 outline-none"
                             value={formData.address}
                             onChange={handleOnChange}
                         />
-                    </div>
 
-                    <div>
-                        <label className="text-sm text-gray-600">City</label>
                         <input
                             type="text"
                             name="city"
-                            placeholder="Enter your Phone Number"
-                            className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                            placeholder="City"
+                            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-red-500 outline-none"
                             value={formData.city}
                             onChange={handleOnChange}
                         />
-                    </div>
 
-                    <select
-                        name="role"
-                        value={formData.role}
-                        onChange={handleOnChange}
-                        className="w-full mt-1 px-4 py-2 border rounded-md"
-                    >
-                        <option value="">Select role</option>
-                        <option value="user">User</option>
-                        <option value="owner">Mess Owner</option>
-                    </select>
+                        <select
+                            name="role"
+                            value={formData.role}
+                            onChange={handleOnChange}
+                            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-red-500 outline-none"
+                        >
+                            <option value="">Select Role</option>
+                            <option value="user">User</option>
+                            <option value="owner">Mess Owner</option>
+                        </select>
 
-                    {
-                        error && <p className="text-red-500">{error}</p>
-                    }
+                        {error && (
+                            <p className="text-red-500 text-sm">{error}</p>
+                        )}
 
-                    <button
-                        type="submit"
-                        className="w-full bg-emerald-600 text-white py-2 rounded-md font-semibold
-                       hover:bg-emerald-700 transition"
-                    >
-                        Sign Up
-                    </button>
-                </form>
+                        <button
+                            type="submit"
+                            className="w-full  text-white py-2 rounded-md font-semibold -700 transition"
+                            style={{
+                                backgroundColor: "#AD343E",
+                            }}
+                        >
+                            Sign Up
+                        </button>
+                    </form>
 
-                <p className="text-sm text-center text-gray-500 mt-6">
-                    Already have an account?
-                    <Link
-                        to={"/login"}
-                        className="text-emerald-600 font-medium ml-1 hover:underline"
-                    >
-                        Login
-                    </Link>
-                </p>
+                    <p className="text-sm text-center text-gray-500 mt-4">
+                        Already have an account?
+                        <Link
+                            to="/login"
+                            className="text-emerald-600 font-medium ml-1"
+                            style={{
+                                color: "#AD343E",
+                            }}
+                        >
+                            Login
+                        </Link>
+                    </p>
+                </div>
             </div>
         </div>
     );
