@@ -9,7 +9,7 @@ const LandingNavbar = () => {
             style={{ backgroundColor: "#DBDFD0" }}
         >
             <div className="flex items-center gap- md:gap-2">
-                <img src="/messMateLogo.png" alt="" className="h-7 md:h-15" />
+                <img src="/messMateLogo.png" alt="" className="h-6 md:h-15" />
                 <h2
                     className="text-[12px] md:text-2xl font-mono text- tracking-wide"
                     //  style={{ color: "#AD343E" }}
@@ -17,18 +17,12 @@ const LandingNavbar = () => {
                     MessMate
                 </h2>
             </div>
-            <div className="flex md:gap-20 gap-3 font-semibold md:text-[15px] text-[12px]">
+            <div className="flex md:gap-20 gap-3 font-semibold md:text-[15px] text-[10px]">
                 <Link
                     to="/login"
                     className="text-gray-700 hover:text-red-700 font-medium"
                 >
                     Home
-                </Link>
-                <Link
-                    to="/login"
-                    className="text-gray-700 hover:text-red-700 font-medium"
-                >
-                    About
                 </Link>
                 <Link
                     to="/login"
@@ -40,11 +34,17 @@ const LandingNavbar = () => {
                     to="/login"
                     className="text-gray-700 hover:text-red-700 font-medium"
                 >
+                    About
+                </Link>
+
+                <Link
+                    to="/login"
+                    className="text-gray-700 hover:text-red-700 font-medium"
+                >
                     Contact
                 </Link>
-                
             </div>
-            <div className="flex items-center gap-2 md:gap-10 md:text-[15px] text-[12px]">
+            <div className="flex items-center gap-2 md:gap-10 md:text-[15px] text-[10px]">
                 <Link
                     to={"/login"}
                     className="text- hover:text--200 transition font-semibold"

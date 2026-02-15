@@ -157,7 +157,7 @@ const MessInDetail = () => {
                         <div className="flex">
                             <a href={`tel:${mess.owner.phone}`}>
                                 <button
-                                    className="mt-4 b00 text-white py-3 rounded-md h700 transition w-40"
+                                    className="mt-4 b00 text-white py-3 text-[15px] rounded-md h700 transition w-40"
                                     style={{ backgroundColor: "#AD343E" }}
                                 >
                                     Contact Mess Owner
@@ -165,7 +165,7 @@ const MessInDetail = () => {
                             </a>
 
                             <button
-                                className="mt-4 ms-4 bg-e00 text-white py-3 rounded-md hold-700 transition w-40"
+                                className="mt-4 ms-4 bg-e00 text-white text-[12px] py-2 rounded-md hold-700 transition w-40"
                                 style={{ backgroundColor: "#AD343E" }}
                                 onClick={() =>
                                     navigate(`/menuInDetail/${mess._id}`)

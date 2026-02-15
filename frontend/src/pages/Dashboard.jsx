@@ -13,15 +13,12 @@ import { Phone } from "lucide-react";
 
 const Dashboard = () => {
     const dispatch = useDispatch();
-    const navigate=useNavigate()
+    const navigate = useNavigate();
     const { mess, loading, error } = useSelector((state) => state.mess);
 
     const [input, setInput] = useState("");
     const [foodType, setFoodType] = useState("all");
     const [city, setCity] = useState("all");
-
-
-
 
     useEffect(() => {
         dispatch(fetchAllMess());
@@ -42,8 +39,8 @@ const Dashboard = () => {
         dispatch(filterByCity(e.target.value));
     };
 
-    const role=localStorage.getItem("role")
-   console.log(role)
+    const role = localStorage.getItem("role");
+    // console.log(role);
 
     return (
         <div className="min-h-screen bg-gray-100">
@@ -65,25 +62,24 @@ const Dashboard = () => {
                         >
                             Dashboard
                         </Link>
+
                         <Link
-                            to={role === "owner" ? "/createMess" : "/not"}
-                            // to="/createMess"
+                            to="/about"
                             className="text-gray-700 hover:text-red-700 font-medium rounded-md px-3 py-2 transition-colors"
                         >
-                            Add Mess
+                            About us
                         </Link>
                         <Link
-                            to={role === "owner" ? "/manageMess" : "/not"}
-                            // to="/manageMess"
-                            className="text-gray-700 hover:text-red-700 font-medium rounded-md px-3 py-2 transition-colors"
-                        >
-                            Manage Mess
-                        </Link>
-                        <Link
-                            to={"/contact"}
+                            to="/contact"
                             className="text-gray-700 hover:text-red-700 font-medium rounded-md px-3 py-2 transition-colors"
                         >
                             Contact Us
+                        </Link>
+                        <Link
+                            to={"/services"}
+                            className="text-gray-700 hover:text-red-700 font-medium rounded-md px-3 py-2 transition-colors"
+                        >
+                            Services
                         </Link>
                     </div>
 

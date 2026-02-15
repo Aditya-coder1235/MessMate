@@ -21,13 +21,13 @@ const NavBar = () => {
             console.error(error.response?.data.message || error.message);
         }
     };
-    let token=localStorage.getItem('token')
-    let role=localStorage.getItem('role')
+    let token = localStorage.getItem("token");
+    let role = localStorage.getItem("role");
     // console.log(role)
-   
+
     return (
         <nav
-            className="w-full md:gap-70   md:px-10 shadow-md h-19 flex justify-around items-center  
+            className="w-full md:gap-70  gap-2 md:px-10 shadow-md h-19 flex justify-around items-center  
                          backdrop-blur-md"
             style={{ backgroundColor: "#DBDFD0" }}
         >
@@ -60,17 +60,20 @@ const NavBar = () => {
                 >
                     About Us
                 </Link>
+
                 <Link
-                    to="/contact"
+                    to={role === "owner" ? "/createMess" : "/not"}
+                    // to="/createMess"
                     className="text-gray-700 hover:text-red-700 font-medium"
                 >
-                    Contact Us
+                    Add Mess
                 </Link>
                 <Link
-                    to="/services"
+                    to={role === "owner" ? "/manageMess" : "/not"}
+                    // to="/manageMess"
                     className="text-gray-700 hover:text-red-700 font-medium"
                 >
-                    Services
+                    Manage Mess
                 </Link>
             </div>
             <div className="flex items-center md:gap-10 md:text-[15px] text-[8px]">
