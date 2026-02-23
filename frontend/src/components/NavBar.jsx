@@ -27,7 +27,7 @@ const NavBar = () => {
 
     return (
         <nav
-            className="w-full md:gap-70  gap-2 md:px-10 shadow-md h-19 flex justify-around items-center  
+            className="w-full md:gap-60  gap-2 md:px-10 shadow-md h-18 flex justify-around items-center  
                          backdrop-blur-md"
             style={{ backgroundColor: "#DBDFD0" }}
         >
@@ -36,10 +36,10 @@ const NavBar = () => {
                     <img
                         src="/messMateLogo.png"
                         alt=""
-                        className="h-7 md:h-15"
+                        className="h-7 md:h-12"
                     />
                     <h2
-                        className="text-[12px] md:text-2xl font-mono text- tracking-wide"
+                        className="text-[12px] md:text-xl font-mono text- tracking-wide"
                         //  style={{ color: "#AD343E" }}
                     >
                         MessMate

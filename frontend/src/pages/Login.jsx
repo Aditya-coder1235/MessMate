@@ -1,47 +1,60 @@
-import {useState} from "react";
+import { useState } from "react";
 import { Link } from "react-router";
 import { useNavigate } from "react-router";
-import axios from 'axios'
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 const Login = () => {
-    const navigate=useNavigate()
-        const [formData, setFormData] = useState({
-            email: "",
-            password: ""
+    // const notify = () => toast("");
+    const navigate = useNavigate();
+    const [formData, setFormData] = useState({
+        email: "",
+        password: "",
+    });
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    const loginUser = async () => {
+        try {
+            setLoading(true);
+            let res = await axios.post(
+                "https://messmate-backend-r94e.onrender.com/api/auth/login",
+                formData,
+                { withCredentials: true },
+            );
+            localStorage.setItem("token", res.data.token);
+            localStorage.setItem("userId", res.data.user._id);
+            localStorage.setItem("role", res.data.user.role);
+
+            toast.success("Login successfully!");
+            setTimeout(() => {
+                navigate("/home");
+            }, 1500);
+            // navigate("/e");
+        } catch (error) {
+            console.error(error.response?.data.message || error.message);
+            setError(error.response?.data.message);
+            toast.error(error.response?.data.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleOnSubmit = (e) => {
+        e.preventDefault();
+        loginUser();
+    };
+
+    const handleOnChange = (e) => {
+        let { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
         });
-        const[error,setError]=useState('')
-    
-        const loginUser = async () => {
-            try {
-                let res = await axios.post(
-                    "https://messmate-backend-r94e.onrender.com/api/auth/login",
-                    formData,
-                    { withCredentials: true },
-                );
-                localStorage.setItem("token", res.data.token);
-                localStorage.setItem("userId", res.data.user._id);
-                localStorage.setItem("role",res.data.user.role);
-                navigate('/home')
-            } catch (error) {
-                console.error(error.response?.data.message || error.message);
-                setError(error.response?.data.message);
-            }
-        };
-    
-        const handleOnSubmit = (e) => {
-            e.preventDefault();
-            loginUser()
-        };
-    
-        const handleOnChange = (e) => {
-            let { name, value } = e.target;
-            setFormData({
-                ...formData,
-                [name]: value,
-            });
-        };
+    };
     return (
         <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
+            <ToastContainer position="top-right" autoClose={3000} />
             <div className="bg-white w-full max-w-md p-8 rounded-xl shadow-md">
                 <h2 className="text-2xl font-bold text-center text-gray-800 mb-2">
                     Welcome Back
@@ -88,7 +101,11 @@ const Login = () => {
                             backgroundColor: "#AD343E",
                         }}
                     >
-                        Login
+                        {loading ? (
+                            <span className="loading loading-spinner loading-sm"></span>
+                        ) : (
+                            "Login"
+                        )}
                     </button>
                 </form>
 

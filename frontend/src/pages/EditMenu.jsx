@@ -2,13 +2,17 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import { useState } from "react";
 import axios from "axios";
-import { useParams ,useNavigate} from "react-router";
-
+import { useParams, useNavigate } from "react-router";
+import { ToastContainer, toast } from "react-toastify";
 
 const EditMenu = () => {
-    const navigate=useNavigate()
-    let {id} = useParams();
-// console.log(messId.id)
+    // const notify = () => toast("Menu Edit successfully!");
+
+    const [loading, setLoading] = useState(false);
+
+    const navigate = useNavigate();
+    let { id } = useParams();
+    // console.log(messId.id)
     const [formData, setFormData] = useState({
         day: "Monday",
         breakfast: "",
@@ -19,22 +23,29 @@ const EditMenu = () => {
 
     const updateMenu = async () => {
         try {
+            setLoading(true);
             let res = await axios.put(
                 `https://messmate-backend-r94e.onrender.com/api/menu/update/${id}`,
                 formData,
                 { withCredentials: true },
             );
-            console.log(res.data)
-            alert('Menu Update Successfully')
-            navigate("/manageMess");
+            // console.log(res.data)
+            // alert('Menu Update Successfully')
+            toast.success("Menu Update Successfully!");
+            setTimeout(() => {
+                navigate("/manageMess");
+            }, 1000);
         } catch (error) {
             console.error(error.response?.data.message || error.message);
+            toast.error(error.response?.data.message || error.message);
+        } finally {
+            setLoading(false);
         }
     };
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        updateMenu()
+        updateMenu();
     };
 
     const handleOnChange = (e) => {
@@ -50,6 +61,8 @@ const EditMenu = () => {
             <NavBar />
 
             <div className="min-h-screen bg-gray-100 flex md:items-center justify-center px-4 py-10">
+                <ToastContainer position="top-right" autoClose={3000} />
+
                 <div className="bg-white w-full max-w-2xl rounded-xl shadow-lg p-8">
                     <h2 className="text-2xl font-bold text-gray-800 mb-1">
                         Update Your Mess Menu
@@ -129,7 +142,11 @@ const EditMenu = () => {
                                 color: "white",
                             }}
                         >
-                            Update Menu
+                            {loading ? (
+                                <span className="loading loading-spinner loading-sm"></span>
+                            ) : (
+                                "Update Menu"
+                            )}
                         </button>
                     </form>
                 </div>

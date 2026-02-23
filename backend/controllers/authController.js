@@ -16,6 +16,9 @@ exports.signupUser=async(req,res)=>{
             return res.status(400).json({message:'User Already Exists'})
         }
 
+        let isPhone = await User.findOne({ phone });
+        if (isPhone) return res.status(400).json({ message: 'Phone number already in use' });
+
         let hashPassword=await bcrypt.hash(password,13)
 
         let newUser=new User({name,email,password:hashPassword,phone,address,city,role})

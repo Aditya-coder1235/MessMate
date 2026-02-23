@@ -1,12 +1,15 @@
-import {useState} from 'react'
-import NavBar from '../components/NavBar'
-import Footer from '../components/Footer'
-import axios from 'axios';
+import { useState } from "react";
+import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
+import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 // import {  } from 'react-router';
+import { ToastContainer, toast } from "react-toastify";
 
 const EditMess = () => {
-    let {id}=useParams()
+    // const notify = () => toast("Mess Edit successfully!");
+
+    let { id } = useParams();
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         messName: "",
@@ -26,11 +29,15 @@ const EditMess = () => {
                 formData,
                 { withCredentials: true },
             );
-               console.log(res.data)
-            alert("Mess Updated Successfully.");
-            navigate("/manageMess");
+            // console.log(res.data);
+            // alert("");
+            toast.success("Mess Updated Successfully!");
+            setTimeout(() => {
+                navigate("/manageMess");
+            }, 1000);
         } catch (error) {
             console.error(error.response?.data.message || error.message);
+            toast.error(error.response?.data.message || error.message);
         } finally {
             setLoading(false);
         }
@@ -49,6 +56,8 @@ const EditMess = () => {
         <div className="min-h-screen bg-gray-100 ">
             <NavBar />
             <div className="min-h-screen bg-gray-100 flex md:items-center justify-center px-4 py-5">
+                <ToastContainer position="top-right" autoClose={3000} />
+
                 <div className="bg-white w-full max-w-2xl rounded-xl shadow-lg p-8">
                     <h2 className="text-2xl font-bold text-gray-800 mb-1">
                         Edit Your Mess
@@ -158,7 +167,12 @@ const EditMess = () => {
                                 color: "white",
                             }}
                         >
-                            {loading ? "Adding..." : "Edit Mess"}
+                            {loading ? (
+                                <span className="loading loading-spinner loading-sm"></span>
+                            ) : (
+                                "Edit Mess"
+                            )}
+                            {/* {loading ? "Adding..." : ""} */}
                         </button>
                     </form>
                 </div>

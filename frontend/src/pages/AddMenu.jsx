@@ -2,13 +2,15 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import { useState } from "react";
 import axios from "axios";
-import { useParams ,useNavigate} from "react-router";
-
+import { useParams, useNavigate } from "react-router";
+import { ToastContainer, toast } from "react-toastify";
 
 const AddMenu = () => {
-    const navigate=useNavigate()
+    // const notify = () => toast("Menu Add successfully!");
+
+    const navigate = useNavigate();
     let messId = useParams();
-// console.log(messId.id)
+    // console.log(messId.id)
     const [formData, setFormData] = useState({
         day: "Monday",
         breakfast: "",
@@ -16,25 +18,33 @@ const AddMenu = () => {
         dinner: "",
         mess: messId.id,
     });
+    const [loading, setLoading] = useState(false);
 
     const uploadMenu = async () => {
         try {
+            setLoading(true);
             let res = await axios.post(
                 "https://messmate-backend-r94e.onrender.com/api/menu/create",
                 formData,
                 { withCredentials: true },
             );
             // console.log(res.data)
-            alert('Menu Added Successfully')
-            navigate("/manageMess");
+            // alert();
+            toast.success("Menu Added Successfully!");
+            setTimeout(() => {
+                navigate("/manageMess");
+            }, 1000);
         } catch (error) {
             console.error(error.response?.data.message || error.message);
+            toast.error(error.response?.data.message || error.message);
+        } finally {
+            setLoading(false);
         }
     };
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        uploadMenu()
+        uploadMenu();
     };
 
     const handleOnChange = (e) => {
@@ -50,6 +60,8 @@ const AddMenu = () => {
             <NavBar />
 
             <div className="min-h-screen bg-gray-100 flex md:items-center justify-center px-4 py-10">
+                <ToastContainer position="top-right" autoClose={3000} />
+
                 <div className="bg-white w-full max-w-2xl rounded-xl shadow-lg p-8">
                     <h2 className="text-2xl font-bold text-gray-800 mb-1">
                         Add Your Mess Menu
@@ -128,7 +140,11 @@ const AddMenu = () => {
                                 color: "white",
                             }}
                         >
-                            Add Menu
+                            {loading ? (
+                                <span className="loading loading-spinner loading-sm"></span>
+                            ) : (
+                                "Add Menu"
+                            )}
                         </button>
                     </form>
                 </div>

@@ -46,12 +46,12 @@ const Dashboard = () => {
         <div className="min-h-screen bg-gray-100">
             <NavBar />
 
-            <div className="max-w-7xl mx-auto px-2 py-5 md:px-4 md:py-8 flex flex-col lg:flex-row gap-6">
+            <div className="max-w-6xl mx-auto px-2 py-5 md:px-4 md:py-8 flex flex-col lg:flex-row gap-6">
                 <div
                     className={`fixed top-0 left-0 h-full bg-white shadow-lg transform transition-transform duration-300 z-40
-         md:translate-x-0 md:static md:shadow-none w-72 md:w-72 p-6 space-y-6 rounded-s-2xl hidden md:block`}
+         md:translate-x-0 md:static md:shadow-none w-70 md:w-68 p-6 space-y-6 rounded-s-2xl hidden md:block`}
                 >
-                    <div className="text-2xl font-bold text--700 mb-8 hidden md:block">
+                    <div className="text-xl font-bold text--700 mb-8 hidden md:block">
                         Mess Manager
                     </div>
 
@@ -135,7 +135,7 @@ const Dashboard = () => {
                         mess.map((item) => (
                             <div
                                 key={item._id}
-                                className="bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer"
+                                className="bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer h-77"
                                 onClick={() => navigate(`/mess/${item._id}`)}
                             >
                                 <div className="p-5 border-b flex justify-between items-center">

@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { Link } from "react-router";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import { ToastContainer, toast } from "react-toastify";
 
 const UserSignup = () => {
-    const navigate=useNavigate()
+    //   const notify = () => toast("");
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -14,22 +16,35 @@ const UserSignup = () => {
         address: "",
         city: "",
     });
-    const[error,setError]=useState('')
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const createUser = async () => {
         try {
-            let res = await axios.post("https://messmate-backend-r94e.onrender.com/api/auth/signup",formData);
+            setLoading(true);
+            let res = await axios.post(
+                "https://messmate-backend-r94e.onrender.com/api/auth/signup",
+                formData,
+                { withCredentials: true },
+            );
             // console.log(res.data);
-            navigate('/login')
+            toast.success("Register successfully!");
+            setTimeout(() => {
+                navigate("/login");
+            }, 1500);
+            // navigate("/login");
         } catch (error) {
-            console.error(error.response?.data.message || error.message);
+            console.error(error.response);
             setError(error.response?.data.message);
+            toast.error(error.response?.data.message);
+        } finally {
+            setLoading(false);
         }
     };
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        createUser()
+        createUser();
     };
 
     const handleOnChange = (e) => {
@@ -42,6 +57,7 @@ const UserSignup = () => {
 
     return (
         <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
+            <ToastContainer position="top-right" autoClose={3000} />
             <div className="bg-white max-w-4xl w-full rounded-2xl shadow-lg overflow-hidden grid grid-cols-1 md:grid-cols-2">
                 <div
                     className="hidden md:flex flex-col justify-center bg-linear-to-br  text-white p-10"
@@ -150,7 +166,11 @@ const UserSignup = () => {
                                 backgroundColor: "#AD343E",
                             }}
                         >
-                            Sign Up
+                            {loading ? (
+                                <span className="loading loading-spinner loading-sm"></span>
+                            ) : (
+                                "Sign Up"
+                            )}
                         </button>
                     </form>
 

@@ -3,6 +3,7 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import { ToastContainer, toast } from "react-toastify";
 
 const CreateMess = () => {
     const navigate = useNavigate();
@@ -21,9 +22,9 @@ const CreateMess = () => {
     const [city, setCity] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState(null);
+    const [loading, setLoading] = useState(false);
 
-
-    const[error,setError]=useState('')
+    const [error, setError] = useState("");
 
     const createMess = async () => {
         const formData = new FormData();
@@ -37,19 +38,25 @@ const CreateMess = () => {
         formData.append("image", image);
 
         try {
-            
+            setLoading(true);
             let res = await axios.post(
                 "https://messmate-backend-r94e.onrender.com/api/mess/create",
                 formData,
                 { withCredentials: true },
             );
             //    console.log(res.data)
-            alert("Mess Upload Successfully.");
-            navigate("/home");
+            toast.success("Mess Upload Successfully.");
+            // alert("Mess Upload Successfully.");
+            setTimeout(() => {
+                navigate("/home");
+            }, 1000);
         } catch (error) {
             console.error(error.response?.data.message || error.message);
             setError(error.response?.data.message);
-        } 
+            toast.error(error.response?.data.message);
+        } finally {
+            setLoading(false);
+        }
     };
 
     // const handleChange = (e) => {
@@ -65,6 +72,7 @@ const CreateMess = () => {
         <div className="min-h-screen bg-gray-100 ">
             <NavBar />
             <div className="min-h-screen bg-gray-100 flex md:items-center justify-center px-4 py-10">
+                <ToastContainer position="top-right" autoClose={3000} />
                 <div className="bg-white w-full max-w-2xl rounded-xl shadow-lg p-8">
                     <h2 className="text-2xl font-bold text-gray-800 mb-1">
                         Add Your Mess
@@ -195,7 +203,11 @@ const CreateMess = () => {
                                 color: "white",
                             }}
                         >
-                            Publish Mess
+                            {loading ? (
+                                <span className="loading loading-spinner loading-sm"></span>
+                            ) : (
+                                "Publish Mess"
+                            )}
                         </button>
                     </form>
                 </div>

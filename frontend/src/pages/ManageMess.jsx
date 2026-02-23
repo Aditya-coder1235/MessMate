@@ -3,8 +3,11 @@ import axios from "axios";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 const ManageMess = () => {
+    // const notify = () => toast("Menu Deleted successfully!");
+
     const ownerId = localStorage.getItem("userId");
     const navigate = useNavigate();
 
@@ -18,7 +21,7 @@ const ManageMess = () => {
                 { withCredentials: true },
             );
             setOwnerMess(res.data.Mess);
-            console.log(res.data)
+            console.log(res.data);
         } catch (error) {
             console.error(error.response?.data?.message || error.message);
         } finally {
@@ -29,19 +32,23 @@ const ManageMess = () => {
     useEffect(() => {
         fetchOwnerMess();
     }, []);
-// console.log(ownerMess)
-   
+    // console.log(ownerMess)
+
     async function delteMess(id) {
         try {
             const res = await axios.delete(
                 `https://messmate-backend-r94e.onrender.com/api/mess/delete/${id}`,
                 { withCredentials: true },
             );
-            alert("Mess Deleted Successfully")
-            navigate('/home')
+            toast.success("Mess Deleted Successfully!");
+            // alert()
+            setTimeout(() => {
+                navigate("/home");
+            }, 1000);
         } catch (error) {
             console.error(error.response?.data?.message || error.message);
-        } 
+            toast.error(error.response?.data?.message || error.message);
+        }
     }
 
     async function deleteMenu(id) {
@@ -50,16 +57,20 @@ const ManageMess = () => {
                 `https://messmate-backend-r94e.onrender.com/api/menu/delete/${id}`,
                 { withCredentials: true },
             );
-            alert("Menu Deleted Successfully");
+            // alert("");
+            toast.success("Menu Deleted Successfully!");
+
             // navigate("/home");
         } catch (error) {
             console.error(error.response?.data?.message || error.message);
+            toast.error(error.response?.data?.message || error.message);
         }
     }
 
     return (
         <div className="min-h-screen bg-gray-100">
             <NavBar />
+            <ToastContainer position="top-right" autoClose={3000} />
 
             <div className="max-w-5xl mx-auto pt-5 px-4 pb-20">
                 <h1 className="text-3xl font-semibold text-gray-800 mb-6">
@@ -141,7 +152,9 @@ const ManageMess = () => {
                                 </button>
 
                                 <button
-                                    onClick={() => delteMess(ownerMess._id)}
+                                    onClick={() => {
+                                        delteMess(ownerMess._id);
+                                    }}
                                     className="border w-40 md:w-full text-b py-2 rounded-lg hover:bg-gray-200"
                                 >
                                     Delete Mess

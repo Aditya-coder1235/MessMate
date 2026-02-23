@@ -9,6 +9,12 @@ exports.createMess = async (req, res) => {
             return res.status(400).json({ message: 'All fields are required' })
         }
 
+        const existingMess = await Mess.findOne({ owner: req.user.id });
+        if (existingMess) {
+            return res.status(400).json({ message: 'You have already registered a mess' });
+        }
+
+
         const newMess = new Mess({ messName, address, city, vegNonveg, owner: req.user.id, price, description, images: req.file.path });
 
         await newMess.save()
