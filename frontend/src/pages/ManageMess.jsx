@@ -17,7 +17,7 @@ const ManageMess = () => {
     async function fetchOwnerMess() {
         try {
             const res = await axios.get(
-                `https://messmate-backend-r94e.onrender.com/api/mess/getOwnerMess/${ownerId}`,
+                `${import.meta.env.VITE_API_URL}/api/mess/getOwnerMess/${ownerId}`,
                 { withCredentials: true },
             );
             setOwnerMess(res.data.Mess);
@@ -37,7 +37,7 @@ const ManageMess = () => {
     async function delteMess(id) {
         try {
             const res = await axios.delete(
-                `https://messmate-backend-r94e.onrender.com/api/mess/delete/${id}`,
+                `${import.meta.env.VITE_API_URL}/api/mess/delete/${id}`,
                 { withCredentials: true },
             );
             toast.success("Mess Deleted Successfully!");
@@ -54,7 +54,7 @@ const ManageMess = () => {
     async function deleteMenu(id) {
         try {
             const res = await axios.delete(
-                `https://messmate-backend-r94e.onrender.com/api/menu/delete/${id}`,
+                `${import.meta.env.VITE_API_URL}/api/menu/delete/${id}`,
                 { withCredentials: true },
             );
             // alert("");
@@ -67,8 +67,15 @@ const ManageMess = () => {
         }
     }
 
+    const role = localStorage.getItem("role");
+    console.log(role);
+
+    if (role !== "owner") {
+        return <PermissionD />;
+    }
+
     return (
-        <div className="min-h-screen bg-gray-100">
+        <div className="min-h-screen bg-amber-50">
             <NavBar />
             <ToastContainer position="top-right" autoClose={3000} />
 
@@ -123,7 +130,7 @@ const ManageMess = () => {
                                     onClick={() =>
                                         navigate(`/addMenu/${ownerMess._id}`)
                                     }
-                                    className="border w-40 md:w-full text-b py-2 rounded-lg hover:bg-gray-200"
+                                    className="px-3 py-2 rounded-lg border border-stone-200 text-stone-600 text-sm font-medium hover:border-orange-400 hover:text-orange-500 transition-all"
                                 >
                                     Add Today’s Menu
                                 </button>
@@ -131,13 +138,13 @@ const ManageMess = () => {
                                     onClick={() =>
                                         navigate(`/editMenu/${ownerMess._id}`)
                                     }
-                                    className="border w-40 md:w-full text-b py-2 rounded-lg hover:bg-gray-200"
+                                    className="px-3 py-2 rounded-lg border border-stone-200 text-stone-600 text-sm font-medium hover:border-orange-400 hover:text-orange-500 transition-all"
                                 >
                                     Edit Today’s Menu
                                 </button>
                                 <button
                                     onClick={() => deleteMenu(ownerMess._id)}
-                                    className="border w-40 md:w-full text-b py-2 rounded-lg hover:bg-gray-200"
+                                    className="px-3 py-2 rounded-lg border border-stone-200 text-stone-600 text-sm font-medium hover:border-orange-400 hover:text-orange-500 transition-all"
                                 >
                                     Delete Today’s Menu
                                 </button>
@@ -146,7 +153,7 @@ const ManageMess = () => {
                                     onClick={() =>
                                         navigate(`/editMess/${ownerMess._id}`)
                                     }
-                                    className="border w-40 md:w-full text-b py-2 rounded-lg hover:bg-gray-200"
+                                    className="px-3 py-2 rounded-lg border border-stone-200 text-stone-600 text-sm font-medium hover:border-orange-400 hover:text-orange-500 transition-all"
                                 >
                                     Edit Mess
                                 </button>
@@ -155,7 +162,7 @@ const ManageMess = () => {
                                     onClick={() => {
                                         delteMess(ownerMess._id);
                                     }}
-                                    className="border w-40 md:w-full text-b py-2 rounded-lg hover:bg-gray-200"
+                                    className="px-3 py-2 rounded-lg border border-stone-200 text-stone-600 text-sm font-medium hover:border-orange-400 hover:text-orange-500 transition-all"
                                 >
                                     Delete Mess
                                 </button>
@@ -165,7 +172,6 @@ const ManageMess = () => {
                 )}
             </div>
 
-            <Footer />
         </div>
     );
 };

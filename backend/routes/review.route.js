@@ -6,6 +6,6 @@ const {isAuth}=require('../middlewares/authMiddleware')
 router.post('/create', isAuth,createreview)
 router.get('/getReview/:id', getReviewByMessId)
 router.put('/update/:id', updateReview)
-router.delete('/delete/:userId', deleteReview)
+router.delete('/delete/:id', deleteReview)
 
 module.exports = router

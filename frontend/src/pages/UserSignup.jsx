@@ -3,16 +3,16 @@ import { Link } from "react-router";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { ToastContainer, toast } from "react-toastify";
+import { Logo } from "../components/Navbar";
 
 const UserSignup = () => {
-    //   const notify = () => toast("");
     const navigate = useNavigate();
+    const [role, setRole] = useState("user");
     const [formData, setFormData] = useState({
         name: "",
         email: "",
         password: "",
         phone: "",
-        role: "",
         address: "",
         city: "",
     });
@@ -22,17 +22,15 @@ const UserSignup = () => {
     const createUser = async () => {
         try {
             setLoading(true);
-            let res = await axios.post(
-                "https://messmate-backend-r94e.onrender.com/api/auth/signup",
-                formData,
+            await axios.post(
+                `${import.meta.env.VITE_API_URL}/api/auth/signup`,
+                { ...formData, role },
                 { withCredentials: true },
             );
-            // console.log(res.data);
             toast.success("Register successfully!");
             setTimeout(() => {
                 navigate("/login");
             }, 1500);
-            // navigate("/login");
         } catch (error) {
             console.error(error.response);
             setError(error.response?.data.message);
@@ -42,13 +40,12 @@ const UserSignup = () => {
         }
     };
 
-    const handleOnSubmit = (e) => {
-        e.preventDefault();
+    const handleOnSubmit = () => {
         createUser();
     };
 
     const handleOnChange = (e) => {
-        let { name, value } = e.target;
+        const { name, value } = e.target;
         setFormData({
             ...formData,
             [name]: value,
@@ -56,137 +53,143 @@ const UserSignup = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
+        <div
+            className="min-h-screen flex items-center justify-center px-4 py-12"
+            style={{
+                background: "linear-gradient(135deg, #FDF8F2 0%, #FFF0E9 100%)",
+            }}
+        >
             <ToastContainer position="top-right" autoClose={3000} />
-            <div className="bg-white max-w-4xl w-full rounded-2xl shadow-lg overflow-hidden grid grid-cols-1 md:grid-cols-2">
-                <div
-                    className="hidden md:flex flex-col justify-center bg-linear-to-br  text-white p-10"
-                    style={{
-                        backgroundColor: "#AD343E",
-                    }}
+            <div className="bg-white rounded-2xl p-10 w-full max-w-md border border-stone-100 shadow-xl shadow-stone-100">
+                <div className="mb-7">
+                    <Logo onClick={() => navigate("/")} />
+                </div>
+
+                <h2
+                    className="text-2xl font-bold text-stone-900 mb-1"
+                    style={{ fontFamily: "Sora, sans-serif" }}
                 >
-                    <h2 className="text-3xl font-bold mb-4">
-                        Welcome to MessMate
-                    </h2>
-                    <p className="text-emerald-100 mb-6">
-                        Find affordable & healthy mess near you with real photos
-                        and honest reviews.
-                    </p>
+                    Create your account
+                </h2>
+                <p className="text-stone-400 text-sm mb-7">
+                    Join MessMate and never miss a good meal again.
+                </p>
 
-                    <ul className="space-y-3 text-sm">
-                        <li> Verified mess listings</li>
-                        <li> Location based search</li>
-                        <li> Multiple food images</li>
-                        <li> Trusted by food lovers</li>
-                    </ul>
-                </div>
-
-                <div className="p-8">
-                    <h2 className="text-2xl font-bold text-gray-800 text-center">
-                        Create Account
-                    </h2>
-                    <p className="text-gray-500 text-sm text-center mb-6">
-                        Join MessMate in less than a minute
-                    </p>
-
-                    <form onSubmit={handleOnSubmit} className="space-y-3">
-                        <input
-                            type="text"
-                            name="name"
-                            placeholder="Full Name"
-                            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-red-500 outline-none"
-                            value={formData.name}
-                            onChange={handleOnChange}
-                        />
-
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder="Email Address"
-                            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-red-500 outline-none"
-                            value={formData.email}
-                            onChange={handleOnChange}
-                        />
-
-                        <input
-                            type="password"
-                            name="password"
-                            placeholder="Password"
-                            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-red-500 outline-none"
-                            value={formData.password}
-                            onChange={handleOnChange}
-                        />
-
-                        <input
-                            type="number"
-                            name="phone"
-                            placeholder="Phone Number"
-                            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-red-500 outline-none"
-                            value={formData.phone}
-                            onChange={handleOnChange}
-                        />
-
-                        <input
-                            type="text"
-                            name="address"
-                            placeholder="Address"
-                            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-red-500 outline-none"
-                            value={formData.address}
-                            onChange={handleOnChange}
-                        />
-
-                        <input
-                            type="text"
-                            name="city"
-                            placeholder="City"
-                            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-red-500 outline-none"
-                            value={formData.city}
-                            onChange={handleOnChange}
-                        />
-
-                        <select
-                            name="role"
-                            value={formData.role}
-                            onChange={handleOnChange}
-                            className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-red-500 outline-none"
-                        >
-                            <option value="">Select Role</option>
-                            <option value="user">User</option>
-                            <option value="owner">Mess Owner</option>
-                        </select>
-
-                        {error && (
-                            <p className="text-red-500 text-sm">{error}</p>
-                        )}
-
+                <p className="text-xs font-semibold text-stone-500 mb-2.5">
+                    I want to
+                </p>
+                <div className="grid grid-cols-2 gap-3 mb-6">
+                    {[
+                        {
+                            key: "user",
+                            icon: "🍽️",
+                            title: "Find a Mess",
+                            sub: "Browse & discover",
+                        },
+                        {
+                            key: "owner",
+                            icon: "🏠",
+                            title: "Own a Mess",
+                            sub: "List & manage",
+                        },
+                    ].map((r) => (
                         <button
-                            type="submit"
-                            className="w-full  text-white py-2 rounded-md font-semibold -700 transition"
-                            style={{
-                                backgroundColor: "#AD343E",
-                            }}
+                            key={r.key}
+                            onClick={() => setRole(r.key)}
+                            className={`border-2 rounded-xl p-4 text-center cursor-pointer transition-all ${
+                                role === r.key
+                                    ? "border-orange-400 bg-orange-50"
+                                    : "border-stone-200 bg-stone-50 hover:border-orange-200"
+                            }`}
                         >
-                            {loading ? (
-                                <span className="loading loading-spinner loading-sm"></span>
-                            ) : (
-                                "Sign Up"
-                            )}
+                            <div className="text-2xl mb-1.5">{r.icon}</div>
+                            <div className="font-semibold text-stone-800 text-sm">
+                                {r.title}
+                            </div>
+                            <div className="text-xs text-stone-400 mt-0.5">
+                                {r.sub}
+                            </div>
                         </button>
-                    </form>
-
-                    <p className="text-sm text-center text-gray-500 mt-4">
-                        Already have an account?
-                        <Link
-                            to="/login"
-                            className="text-emerald-600 font-medium ml-1"
-                            style={{
-                                color: "#AD343E",
-                            }}
-                        >
-                            Login
-                        </Link>
-                    </p>
+                    ))}
                 </div>
+
+                {[
+                    {
+                        label: "Full Name",
+                        key: "name",
+                        type: "text",
+                        placeholder: "Ravi Sharma",
+                    },
+                    {
+                        label: "Email Address",
+                        key: "email",
+                        type: "email",
+                        placeholder: "ravi@example.com",
+                    },
+                    {
+                        label: "Phone Number",
+                        key: "phone",
+                        type: "tel",
+                        placeholder: "+91 98765 43210",
+                    },
+                    {
+                        label: "Password",
+                        key: "password",
+                        type: "password",
+                        placeholder: "Create a password",
+                    },
+                    {
+                        label: "Address",
+                        key: "address",
+                        type: "text",
+                        placeholder: "123, MG Road",
+                    },
+                    {
+                        label: "City",
+                        key: "city",
+                        type: "text",
+                        placeholder: "Mumbai",
+                    },
+                ].map((f) => (
+                    <div key={f.key} className="mb-4">
+                        <label className="block text-xs font-semibold text-stone-500 mb-1.5">
+                            {f.label}
+                        </label>
+                        <input
+                            type={f.type}
+                            name={f.key}
+                            placeholder={f.placeholder}
+                            value={formData[f.key]}
+                            onChange={handleOnChange}
+                            className="w-full border-2 border-stone-200 rounded-lg px-4 py-2.5 text-sm text-stone-800 outline-none focus:border-orange-400 transition-colors placeholder:text-stone-300"
+                        />
+                    </div>
+                ))}
+
+                {error && (
+                    <p className="text-red-500 text-sm mb-3">{error}</p>
+                )}
+
+                <button
+                    onClick={handleOnSubmit}
+                    className="w-full mt-2 py-3.5 bg-orange-500 text-white rounded-xl font-semibold text-base hover:bg-orange-600 transition-all shadow-lg shadow-orange-100"
+                >
+                    {loading ? (
+                        <span className="loading loading-spinner loading-sm"></span>
+                    ) : (
+                        "Create Account"
+                    )}
+                </button>
+
+                <p className="text-center mt-5 text-sm text-stone-400">
+                    Already have an account?{" "}
+                    <Link
+                        to="/login"
+                        className="text-orange-500 font-semibold cursor-pointer hover:underline"
+                    >
+                        Log in
+                    </Link>
+                </p>
             </div>
         </div>
     );

@@ -25,7 +25,7 @@ const EditMess = () => {
         try {
             setLoading(true);
             let res = await axios.put(
-                `https://messmate-backend-r94e.onrender.com/api/mess/update/${id}`,
+                `${import.meta.env.VITE_API_URL}/api/mess/update/${id}`,
                 formData,
                 { withCredentials: true },
             );
@@ -53,9 +53,9 @@ const EditMess = () => {
         editMess();
     };
     return (
-        <div className="min-h-screen bg-gray-100 ">
+        <div className="min-h-screen bg-amber-50 ">
             <NavBar />
-            <div className="min-h-screen bg-gray-100 flex md:items-center justify-center px-4 py-5">
+            <div className="min-h-screen bg-amber-50 flex md:items-center justify-center px-4 py-5">
                 <ToastContainer position="top-right" autoClose={3000} />
 
                 <div className="bg-white w-full max-w-2xl rounded-xl shadow-lg p-8">
@@ -161,11 +161,8 @@ const EditMess = () => {
 
                         <button
                             disabled={loading}
-                            className="w-full bg--600 text-white py-3 rounded-md font-semibold hover:bg--700 transition"
-                            style={{
-                                backgroundColor: "#AD343E",
-                                color: "white",
-                            }}
+                            className="w-full bg-orange-600 text-white py-3 rounded-md font-semibold hover:bg-orange-700 transition"
+                            
                         >
                             {loading ? (
                                 <span className="loading loading-spinner loading-sm"></span>
@@ -177,7 +174,6 @@ const EditMess = () => {
                     </form>
                 </div>
             </div>
-            <Footer />
         </div>
     );
 };

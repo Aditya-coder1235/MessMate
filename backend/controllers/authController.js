@@ -7,8 +7,8 @@ exports.signupUser=async(req,res)=>{
     try {
         let { name, email, password, phone, address ,city,role}=req.body
 
-        if(!name || !email || !password || !role){
-            return res.status(400).json({ message: 'All fileds are required' })
+        if (!name || !email || !password) {
+            return res.status(400).json({ message: "Name, email and password required" });
         }
 
         let user=await User.findOne({email})
@@ -35,6 +35,10 @@ exports.loginUser = async(req, res) => {
     try {
         let {email,password}=req.body;
 
+        if (!email || !password) {
+            return res.status(400).json({ message: "Email and password required" });
+        }
+
         let user=await User.findOne({email})
         if(!user){
             return res.status(400).json({message:'User Not Found'})
@@ -51,12 +55,12 @@ exports.loginUser = async(req, res) => {
             {expiresIn:'7d'}
         )
 
-        res.cookie('token',token,{
+        res.cookie("token", token, {
             httpOnly: true,
-            secure: true,      
-            sameSite: "none",    
-            maxAge: 7 * 24 * 60 * 60 * 1000,
-        })
+            secure: true,
+            sameSite: "none",
+            maxAge: 7 * 24 * 60 * 60 * 1000
+        });
 
         res.status(200).json({message:"User login successfully",token:token,user:user})
 

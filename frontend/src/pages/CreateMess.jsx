@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { ToastContainer, toast } from "react-toastify";
+import PermissionD from "./PermissionD";
 
 const CreateMess = () => {
     const navigate = useNavigate();
@@ -40,7 +41,7 @@ const CreateMess = () => {
         try {
             setLoading(true);
             let res = await axios.post(
-                "https://messmate-backend-r94e.onrender.com/api/mess/create",
+                `${import.meta.env.VITE_API_URL}/api/mess/create`,
                 formData,
                 { withCredentials: true },
             );
@@ -68,10 +69,18 @@ const CreateMess = () => {
         e.preventDefault();
         createMess();
     };
+
+    const role=localStorage.getItem("role")
+    console.log(role)
+
+    if(role !== "owner"){
+        return <PermissionD/>
+    }
+
     return (
-        <div className="min-h-screen bg-gray-100 ">
+        <div className="min-h-screen bg-amber-50 ">
             <NavBar />
-            <div className="min-h-screen bg-gray-100 flex md:items-center justify-center px-4 py-10">
+            <div className="min-h-screen bg-amber-50 flex md:items-center justify-center px-4 py-10">
                 <ToastContainer position="top-right" autoClose={3000} />
                 <div className="bg-white w-full max-w-2xl rounded-xl shadow-lg p-8">
                     <h2 className="text-2xl font-bold text-gray-800 mb-1">
@@ -197,11 +206,8 @@ const CreateMess = () => {
                         {error && <p className="text-red-500">{error}</p>}
 
                         <button
-                            className="w-full bg--600 text-white py-3 rounded-md font-semibold hover:bg--700 transition"
-                            style={{
-                                backgroundColor: "#AD343E",
-                                color: "white",
-                            }}
+                            className="w-full bg-orange-600 hover:bg-orange-700 text-white py-3 rounded-md font-semibold hover:bg--700 transition"
+                            
                         >
                             {loading ? (
                                 <span className="loading loading-spinner loading-sm"></span>
