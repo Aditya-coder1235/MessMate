@@ -26,6 +26,7 @@ app.use(
     cors({
         origin: [
             "http://localhost:5173",
+            "https://mess-mate-three.vercel.app",
             "https://messmate111.vercel.app"
         ],
         credentials: true,
