@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import { Logo } from "../components/Navbar";
+import { Logo } from "../components/NavBar";
 
 const Login = () => {
     const navigate = useNavigate();

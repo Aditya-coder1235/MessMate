@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { ToastContainer, toast } from "react-toastify";
-import { Logo } from "../components/Navbar";
+import { Logo } from "../components/NavBar";
 
 const UserSignup = () => {
     const navigate = useNavigate();
